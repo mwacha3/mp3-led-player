@@ -14,8 +14,6 @@ import webbrowser
 
 mixer.init()
 
-from kivy.core.window import Window
-Window.size=400,600
 kv='''
 MyScreenManager:             
     MDScreen:
