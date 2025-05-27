@@ -37,13 +37,11 @@ version =0.0.1
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
-requirements = python3,kivy,kivymd,pillow,pygame
+requirements = python3,kivy==2.3.1,kivymd==1.2.0,pillow,pygame
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
-requirements.source.kivy =%(source.dir)s/kivy
-requirements.source.kivymd =%(source.dir)s/kivymd
-requirements.source.pillow =%(source.dir)s/pillow
+#requirements.source.kivy =%(source.dir)s/kivy
 
 # (str) Presplash of the application
 #presplash.filename = %(source.dir)s/data/presplash.png
@@ -124,7 +122,7 @@ android.ndk = 27c
 #android.ndk_path =.buildozer/android/platform/android-ndk-r27c
 
 # (str) Android SDK directory (if empty, it will be automatically downloaded.)
-android.sdk_path =.buildozer/android/platform/cmdline-tools
+#android.sdk_path =.buildozer/android/platform/cmdline-tools
 
 # (str) ANT directory (if empty, it will be automatically downloaded.)
 #android.ant_path =
