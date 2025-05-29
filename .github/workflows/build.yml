@@ -1,4 +1,4 @@
-
+t
 name: Build Android APK
 
 on:
@@ -28,18 +28,9 @@ jobs:
       - name: Install Android SDK
         run: |
           sudo apt-get install -y openjdk-8-jdk-headless
-          wget https://dl.google.com/android/repository/commandlinetools-linux-6858069_latest.zip
-          unzip commandlinetools-linux-6858069_latest.zip -d android-sdk
-          export ANDROID_HOME=$PWD/android-sdk
-          export PATH=$PATH:$ANDROID_HOME/cmdline-tools/tools/bin
-          yes | sdkmanager --licenses
-          sdkmanager --install "platforms;android-30" "build-tools;30.0.3"
 
       - name: Build APK
         run: yes|
-          export ANDROID_HOME=$PWD/android-sdk
-          export PATH=$PATH:$ANDROID_HOME/cmdline-tools/tools/bin
-          buildozer init
           buildozer android debug
 
       - name: Upload APK
