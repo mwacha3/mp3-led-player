@@ -1,40 +1,42 @@
-
-name: Build Android APK
-
+name: CI
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.10'
-
-      - name: Install dependencies
+      # used to cache dependencies with a timeout
+      - name: Get Date
+        id: get-date
         run: |
-          sudo apt-get update
-          sudo apt-get install -y autoconf automake autopoint libtool pkg-config libltdl-dev
-          pip install buildozer
-          pip install cython
+          echo "::set-output name=date::$(/bin/date -u "+%Y%m%d")"
+        shell: bash
 
-      - name: Install Android SDK
-        run: |
-          sudo apt-get install -y openjdk-8-jdk-headless
-
-      - name: Build APK
-        run: yes|
-          buildozer android debug
-
-      - name: Upload APK
-        uses: actions/upload-pages-artifact@v3
+      - name: Cache Buildozer global directory
+        uses: actions/cache@v2
         with:
-          name: app.apk
-          path: bin/*.apk
+          path: .buildozer_global
+          key: buildozer-global-${{ hashFiles('buildozer.spec') }} # Replace with your path
+
+      - uses: actions/cache@v2
+        with:
+          path: .buildozer
+          key: ${{ runner.os }}-${{ steps.get-date.outputs.date }}-${{ hashFiles('buildozer.spec') }}
+
+      - name: Build with Buildozer
+        uses: ArtemSBulgakov/buildozer-action@v1
+        id: buildozer
+        with:
+          command: buildozer android debug
+          buildozer_version: stable
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: package
+          path: ${{ steps.buildozer.outputs.filename }}
