@@ -25,10 +25,9 @@ jobs:
             build-essential python3-pip pkg-config \
             git zip unzip openjdk-17-jdk python3 autoconf \
             python3-dev ffmpeg libsdl2-dev libtool zlib1g-dev libncurses5-dev \
-            libffi-dev libssl-dev cmake libncursesw5-dev libtinfo5 libsdl2-image-dev \
+            libffi-dev libssl-dev cmake libncursesw5-dev libsdl2-image-dev \
             libsdl2-mixer-dev libsdl2-ttf-dev libportmidi-dev \
-            libswscale-dev libavformat-dev libavcodec-dev libgstreamer1.0 \
-            gstreamer1.0-plugins-base gstreamer1.0-plugins-good
+            libswscale-dev libavformat-dev libavcodec-dev 
 
           pip3 install --upgrade pip
           pip3 install cython==0.29.36 virtualenv buildozer
