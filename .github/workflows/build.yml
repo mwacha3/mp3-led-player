@@ -22,7 +22,7 @@ jobs:
         run: |
           sudo apt update
           sudo apt install -y \
-            build-essential sudo apt-get install -y python3-pip pkg-config \
+            build-essential python3-pip pkg-config \
             git zip unzip openjdk-17-jdk python3 autoconf \
             python3-dev ffmpeg libsdl2-dev libtool zlib1g-dev libncurses5-dev \
             libffi-dev libssl-dev cmake libncursesw5-dev libtinfo5 libsdl2-image-dev \
