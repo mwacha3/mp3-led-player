@@ -23,14 +23,13 @@ jobs:
           sudo apt update
           sudo apt install -y \
             build-essential python3-pip pkg-config \
-            git zip unzip openjdk-17-jdk python3 autoconf \
+            git zip unzip openjdk-17-jdk python3 \
             python3-dev ffmpeg libsdl2-dev libtool zlib1g-dev libncurses5-dev \
             libffi-dev libssl-dev cmake libncursesw5-dev libsdl2-image-dev \
             libsdl2-mixer-dev libsdl2-ttf-dev libportmidi-dev \
             libswscale-dev libavformat-dev libavcodec-dev ccache automake m4 libtool-bin
 
           pip3 install --upgrade pip
-          autoreconf -i
           pip3 install cython==0.29.36 virtualenv buildozer
 
       - name: Build APK
