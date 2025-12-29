@@ -1,32 +1,19 @@
-name: Build APK
-
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Install dependencies
-        run: |
-          sudo apt-get update
-          sudo apt install -y git zip unzip openjdk-17-jdk python3-pip pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo-dev libffi-dev libssl-dev
-
-      - name: Install Buildozer
-        run: |
-          pip3 install buildozer cython
-
+      - uses: actions/checkout@v4
       - name: Build APK
-        run: yes|
-          buildozer android debug deploy run 
-
-      - name: Upload APK
+        uses: ArtemSBulgakov/buildozer-action@v1
+        with:
+          python-version: 3.9
+          buildozer-cmd: buildozer -v android debug
+      - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: apk
-          path: bin/*.apk
+          name: package
+          path: ./bin/*.apk
