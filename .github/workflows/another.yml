@@ -40,3 +40,8 @@ jobs:
       with:
         name: MP3-LED-Player
         path: bin/*.apk
+    - name: Upload APK
+      uses: actions/upload-artifact@v4
+      with:
+        name: MP3-LED-Player
+        path: bin/*.apk
